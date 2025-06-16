@@ -12,6 +12,12 @@ repositories {
 dependencies {
     // Зависимости для тестов (будут доступны только в тестовом коде)
     testImplementation(
+            "org.junit.jupiter:junit-jupiter:5.11.4",
             "com.codeborne:selenide:7.9.3"  // Selenide - фреймворк для тестирования веб-интерфейсов
     )
+}
+
+//Для того чтоб запускать тесты
+test {
+    useJUnitPlatform()
 }
