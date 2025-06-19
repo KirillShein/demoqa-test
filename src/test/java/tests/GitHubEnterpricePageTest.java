@@ -20,7 +20,6 @@ public class GitHubEnterpricePageTest {
     void gitHubEnterprizePagetest() {
         //открываем страницу github.com
         open("https://github.com/");
-        //ищем по tag и тексту и наводим мышкой
        $(byTagAndText("button", "Solutions")).hover();
        $(byText("Enterprises")).click();
        $("#hero-section-brand-heading").shouldHave(text("The AI-powered"));
