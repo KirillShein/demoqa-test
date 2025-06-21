@@ -1,36 +1,29 @@
 package tests;
 
-import com.codeborne.selenide.Configuration;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pages.TestBoxPage;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
-public class TextBoxTest {
+public class TextBoxTest extends TestBase {
 
-    @BeforeAll
-    static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
-    }
+    TestBoxPage testBoxPage = new TestBoxPage();
+
 
     @Test
-    void fillFormTest() {
-        open("/text-box");
-        //#userName это id = userName из html
-        $("#userName").setValue("Kirill");
-        $("#userEmail").setValue("kirill@mail.ru");
-        $("#currentAddress").setValue("Donskoy");
-        $("#permanentAddress").setValue("Tbilisi");
-        $("#submit").click();
+    void fullFormTest() {
+        testBoxPage.openPage()
+                    .setUserName("Kirill")
+                    .setUserEmail("kirill@mail.ru")
+                    .setCurrentAddress("Donskoy")
+                    .setPermanentAddress("Tbilisi")
+                    .setClickSubmit()
+
+                    //Проверка данных
+                    .setCheckResult("Kirill")
+                    .setCheckResult("kirill@mail.ru")
+                    .setCheckResult("Donskoy")
+                    .setCheckResult("Tbilisi");
 
 
-        $("#output #name").shouldHave(text("Kirill"));
-        $("#output #email").shouldHave(text("kirill@mail.ru"));
-        $("#output #currentAddress").shouldHave(text("Donskoy"));
-        $("#output #permanentAddress").shouldHave(text("Tbilisi"));
     }
 }
