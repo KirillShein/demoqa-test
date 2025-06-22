@@ -2,7 +2,10 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.CalendarFakerComponent;
 import pages.components.DataTableComponent;
+import pages.components.DataTableFakerComponent;
+import utils.TestData;
 
 import java.io.File;
 
@@ -18,6 +21,8 @@ public class RegistrationPage {
 
         return this;
     }
+
+
 
     private SelenideElement firstNameInput = $("#firstName"),
                             lastNameInput = $("#lastName"),
@@ -38,6 +43,7 @@ public class RegistrationPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
     DataTableComponent dataTableComponent = new DataTableComponent();
+
 
     public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
@@ -77,6 +83,7 @@ public class RegistrationPage {
 
         return this;
     }
+
 
 
     public RegistrationPage setHobbies(String value) {
@@ -123,6 +130,15 @@ public class RegistrationPage {
         return this;
     }
 
+    // с использованием faker
+
+    public RegistrationPage setFakerDateOfBirth(TestData testData, String day, String month, String year) {
+        calendarInput.click();
+        new CalendarFakerComponent(testData).setDate();
+
+        return this;
+    }
+
     //проверка данных
 
     public  RegistrationPage setCheckTitle(String value) {
@@ -139,6 +155,20 @@ public class RegistrationPage {
 
     public RegistrationPage checkRequiredResult(String key, String value) {
         dataTableComponent.setCheckRequiredResult();
+
+        return this;
+    }
+
+    //С использованием faker
+
+    public RegistrationPage checkResultRandom(TestData testData, String key, String value) {
+        new DataTableFakerComponent(testData).setCheckResult();
+
+        return this;
+    }
+
+    public RegistrationPage checkFakerRequiredResult(TestData testData, String key, String value) {
+        new DataTableFakerComponent(testData).setFakerCheckRequiredResult();
 
         return this;
     }

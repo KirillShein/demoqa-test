@@ -4,42 +4,47 @@ import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
 
+
 public class PracticeFormWithPageObjectTest extends TestBase {
 
 
     RegistrationPage registrationPage = new RegistrationPage();
 
+
+
     @Test
     void fullPracticeFormTest() {
 
-        registrationPage.openPage()
-                        .setFirstName("Kirill")
-                        .setLastName("Shein")
-                        .setEmail("kirill@mail.ru")
-                        .setGender("Male")
-                        .setNumber("9110993250")
-                        .setDateOfBirth("22", "October", "1991")
-                        .setHobbies("Sports")
-                        .setHobbies("Reading")
-                        .setSubjects("English")
-                        .setImage("src/test/resources/kim.jpeg")
-                        .setCurrentAddress("street New 56")
-                        .setState("NCR")
-                        .setCity("Delhi")
-                        .setSubmit()
+        RegistrationPage registrationPage = new RegistrationPage();
 
-                        //проверка данных
-                        .setCheckTitle("Thanks for submitting the form")
-                        .checkResult("Student Name", "Kirill Shein")
-                        .checkResult("Student Email", "kirill@mail.ru")
-                        .checkResult("Gender", "Male")
-                        .checkResult("Mobile", "7911099325")
-                        .checkResult("Date of Birth", "22 October,1991")
-                        .checkResult("Subjects", "English")
-                        .checkResult("Hobbies", "Sports, Reading")
-                        .checkResult("Picture", "kim.jpeg")
-                        .checkResult("Address", "street New 56")
-                        .checkResult("State and City", "NCR Delhi");
+        registrationPage.openPage()
+                .setFirstName("Kirill")
+                .setLastName("Shein")
+                .setEmail("kirill@mail.ru")
+                .setGender("Male")
+                .setNumber("9110993250")
+                .setDateOfBirth("22", "October", "1991")
+                .setHobbies("Sports")
+                .setHobbies("Reading")
+                .setSubjects("English")
+                .setImage("src/test/resources/kim.jpeg")
+                .setCurrentAddress("street New 56")
+                .setState("NCR")
+                .setCity("Delhi")
+                .setSubmit()
+
+                //проверка данных
+                .setCheckTitle("Thanks for submitting the form")
+                .checkResult("Student Name", "Kirill Shein")
+                .checkResult("Student Email", "kirill@mail.ru")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "7911099325")
+                .checkResult("Date of Birth", "22 October,1991")
+                .checkResult("Subjects", "English")
+                .checkResult("Hobbies", "Sports, Reading")
+                .checkResult("Picture", "kim.jpeg")
+                .checkResult("Address", "street New 56")
+                .checkResult("State and City", "NCR Delhi");
 
 
     }
